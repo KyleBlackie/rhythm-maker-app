@@ -1,0 +1,31 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body .container {
+    width: 90vw;
+    height: 60vh;
+    border: 3px solid #000000;
+    margin: 25px auto 0px;
+    background: #ffffff;
+}
+
+#grid {
+    width: 85vw;
+    height: 50vh;
+}
+
+
+
+.paint {
+    border: 1px solid #000000;
+}

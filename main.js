@@ -1,18 +1,37 @@
 const cont = document.querySelector('#grid');
 const resetBtn = document.querySelector('#resetBtn');
+const playPauseBtn = document.querySelector('#playPauseBtn');
+let beat = 0;
+let playInterval;
 let contHeight = cont.clientHeight;
 let contWidth = cont.clientWidth;
 let div;
+
+let playBool = false;
+
 
 // reset function
 resetBtn.addEventListener('click', () => {
     // get all boxes so that we can reset them
     const boxes = document.querySelectorAll('.box');
-    
+
     // loop through all boxes and reset their text content
     boxes.forEach((box) => {
         box.textContent = '';
     });
+});
+
+// play / pause event listener
+playPauseBtn.addEventListener('click', () => {
+    playBool = !playBool;
+    // play beats function
+    console.log(playBool);
+    if(playBool) {
+        //2.3s interval
+        playInterval = setInterval(playBeats,200); // 1/16th beats at 140bpm
+    } else {
+        clearInterval(playInterval);
+    }
 });
 
 // get audio files
@@ -40,7 +59,6 @@ function playKick(volume) {
 }
 
 
-
 // generate grid to be used for making rythms
 function createRythmDivs(numBeats) {
     let totalBoxes = (numBeats+1) * 4; // 4 rows of n boxes
@@ -48,11 +66,11 @@ function createRythmDivs(numBeats) {
     let boxHeight = (contHeight / 4 ) + 'px';
     cont.setAttribute('style', `display: grid; grid-template-columns: repeat(${numBeats+1}, ${boxWidth}); grid-template-rows: repeat(${4}, ${boxHeight})`);
     
-    
+    let boxId = 0;
     for (let i = 0; i < totalBoxes; i++) {
         // create a div with id of i
         div = document.createElement('div');
-        div.setAttribute('id', i);
+        //div.setAttribute('id', i);
 
         // check for first row of beat labels
         if(i < numBeats+1) {
@@ -110,7 +128,11 @@ function createRythmDivs(numBeats) {
                     break;                
             }
         } else {
+            // set div class and id
             div.classList.add('box'); 
+            div.setAttribute('id', boxId);
+            boxId++;
+            //add event listener for when div is clicked to add/remove beats
             div.addEventListener('click', function(e) {
                 
                 // check if box should be selected or deselected
@@ -120,13 +142,41 @@ function createRythmDivs(numBeats) {
                     e.target.textContent = 'X';
                 }
 
-                playHats(1);
-                playSnare(1);
-                playKick(1);
+                //playHats(1);
+                //playSnare(1);
+                //playKick(1);
                 
             });
             // add event listener
         }
         cont.appendChild(div);
+    }
+}
+
+
+function playBeats() {
+    // get all boxes so we can know which beats to play
+    const hats = document.getElementById(beat);
+    const snare = document.getElementById(beat+16);
+    const kick = document.getElementById(beat+32); 
+    
+    // play sound effect if hats is selected for given beat
+    if(hats.textContent == 'X'){
+        playHats(1);
+    }
+    
+    // play sound effect if snare is selected for given beat
+    if(snare.textContent == 'X'){
+        playSnare(1);
+    }
+    
+    // play sound effect if kick is selected for given beat
+    if(kick.textContent == 'X'){
+        playKick(1);
+    }
+    
+    beat++;
+    if(beat > 15) {
+        beat = 0;
     }
 }

@@ -11,6 +11,12 @@ body {
     justify-content: center;
 }
 
+p {
+    text-align: center;
+}
+
+/* Main Container */
+
 #grid {
     width: 85vw;
     height: 50vh;

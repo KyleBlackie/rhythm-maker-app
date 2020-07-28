@@ -1,7 +1,45 @@
 const cont = document.querySelector('#grid');
+const resetBtn = document.querySelector('#resetBtn');
 let contHeight = cont.clientHeight;
 let contWidth = cont.clientWidth;
 let div;
+
+// reset function
+resetBtn.addEventListener('click', () => {
+    // get all boxes so that we can reset them
+    const boxes = document.querySelectorAll('.box');
+    
+    // loop through all boxes and reset their text content
+    boxes.forEach((box) => {
+        box.textContent = '';
+    });
+});
+
+// get audio files
+let hatsAudio = new Audio('/sounds/Hats.mp3');
+let snareAudio = new Audio('/sounds/Snare.mp3');
+let kickAudio = new Audio('/sounds/Kick.mp3');
+
+// functions to play audio files
+function playHats(volume) {
+    var audio=hatsAudio.cloneNode();
+    audio.volume=volume;
+    audio.play();
+}
+
+function playSnare(volume) {
+    var audio=snareAudio.cloneNode();
+    audio.volume=volume;
+    audio.play();
+}
+
+function playKick(volume) {
+    var audio=kickAudio.cloneNode();
+    audio.volume=volume;
+    audio.play();
+}
+
+
 
 // generate grid to be used for making rythms
 function createRythmDivs(numBeats) {
@@ -74,7 +112,18 @@ function createRythmDivs(numBeats) {
         } else {
             div.classList.add('box'); 
             div.addEventListener('click', function(e) {
-                e.target.textContent = 'X';
+                
+                // check if box should be selected or deselected
+                if (e.target.textContent == 'X') {
+                    e.target.textContent = '';
+                } else {
+                    e.target.textContent = 'X';
+                }
+
+                playHats(1);
+                playSnare(1);
+                playKick(1);
+                
             });
             // add event listener
         }

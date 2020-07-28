@@ -11,21 +11,32 @@ body {
     justify-content: center;
 }
 
-body .container {
-    width: 90vw;
-    height: 60vh;
-    border: 3px solid #000000;
-    margin: 25px auto 0px;
-    background: #ffffff;
-}
-
 #grid {
     width: 85vw;
     height: 50vh;
 }
 
+.label-side {
+    width: 40%;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
 
-.paint {
+.label-top {
+    font-size: 1.5em;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: .2em;
+    justify-content: center;
+}
+
+.box {
     border: 1px solid #000000;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

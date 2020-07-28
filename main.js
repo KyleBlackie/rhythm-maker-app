@@ -18,7 +18,7 @@ function createRythmDivs(numBeats) {
 
         // check for first row of beat labels
         if(i < numBeats+1) {
-            div.classList.add('label'); 
+            div.classList.add('label-top'); 
 
             // set text depending on label
             switch(i) {
@@ -56,23 +56,27 @@ function createRythmDivs(numBeats) {
                     break;
             }
         } else if(i % 17 == 0) {    // Check for left most column to label type of sounds
-            div.classList.add('label'); 
+            div.classList.add('label-side'); 
             // set text depending on label
             switch(i) {
                 case 17:
-                    div.textContent = 'H';
+                    div.textContent = 'Hats';
                     break;
                 case 34:
-                    div.textContent = 'S';
+                    div.textContent = 'Snare';
                     break;
                 case 51:
-                    div.textContent = 'K';
+                    div.textContent = 'Kick';
                     break;
                 default:
                     break;                
             }
         } else {
-            div.classList.add('paint'); 
+            div.classList.add('box'); 
+            div.addEventListener('click', function(e) {
+                e.target.textContent = 'X';
+            });
+            // add event listener
         }
         cont.appendChild(div);
     }

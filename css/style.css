@@ -46,3 +46,7 @@ p {
     align-items: center;
     justify-content: center;
 }
+
+#playPauseBtn {
+    margin: 2em;
+}

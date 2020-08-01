@@ -1,11 +1,15 @@
 const cont = document.querySelector('#grid');
 const resetBtn = document.querySelector('#resetBtn');
 const playPauseBtn = document.querySelector('#playPauseBtn');
+var bpmSlider = document.getElementById('#BPMRange');
+var bpmDisplay = document.getElementById('#BPMDisplay');
 let beat = 0;
+let interval;
 let playInterval;
 let contHeight = cont.clientHeight;
 let contWidth = cont.clientWidth;
 let div;
+
 
 let playBool = false;
 
@@ -28,11 +32,34 @@ playPauseBtn.addEventListener('click', () => {
     console.log(playBool);
     if(playBool) {
         //2.3s interval
-        playInterval = setInterval(playBeats,200); // 1/16th beats at 140bpm
+        //interval = (1/(bpmSlider.value/60))/4*1000;
+        interval = (1/(140/60))/4*1000;
+        console.log(interval);
+        playInterval = setInterval(playBeats,interval); // 1/16th beats at 140bpm
     } else {
         clearInterval(playInterval);
     }
 });
+
+// check if the slider's value changes
+bpmSlider.oninput = function() {
+    // display BPM to user
+    bpmDisplay.innerHTML = this.value;
+    console.log('somethig');
+    // calculate new interval time between each 1/16th beat
+    interval = (1/(bpmSlider.value/60))/4*1000;
+    if (playBool) {
+        //update current interval
+        playInterval = setInterval(playBeats,interval);
+    }
+}
+// change playInterval???
+/*
+If the slider is changed...
+1. Update interval value
+2. Check if playBool
+3. Update playInterval
+*/
 
 // get audio files
 let hatsAudio = new Audio('/sounds/Hats.mp3');

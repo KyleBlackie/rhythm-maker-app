@@ -1,8 +1,8 @@
-const cont = document.querySelector('#grid');
-const resetBtn = document.querySelector('#resetBtn');
-const playPauseBtn = document.querySelector('#playPauseBtn');
-var bpmSlider = document.getElementById('#BPMRange');
-var bpmDisplay = document.getElementById('#BPMDisplay');
+const cont = document.getElementById('grid');
+const resetBtn = document.getElementById('resetBtn');
+const playPauseBtn = document.getElementById('playPauseBtn');
+var bpmSlider = document.getElementById('BPMRange');
+var bpmDisplay = document.getElementById('BPMDisplay');
 let beat = 0;
 let interval;
 let playInterval;
@@ -10,6 +10,10 @@ let contHeight = cont.clientHeight;
 let contWidth = cont.clientWidth;
 let div;
 
+// get audio files
+let hatsAudio = new Audio('/sounds/Hats.mp3');
+let snareAudio = new Audio('/sounds/Snare.mp3');
+let kickAudio = new Audio('/sounds/Kick.mp3');
 
 let playBool = false;
 
@@ -29,12 +33,9 @@ resetBtn.addEventListener('click', () => {
 playPauseBtn.addEventListener('click', () => {
     playBool = !playBool;
     // play beats function
-    console.log(playBool);
     if(playBool) {
-        //2.3s interval
-        //interval = (1/(bpmSlider.value/60))/4*1000;
-        interval = (1/(140/60))/4*1000;
-        console.log(interval);
+        // calculate the interval between beats using value on bpm slider input
+        interval = (1/(bpmSlider.value/60))/4*1000;
         playInterval = setInterval(playBeats,interval); // 1/16th beats at 140bpm
     } else {
         clearInterval(playInterval);
@@ -45,26 +46,14 @@ playPauseBtn.addEventListener('click', () => {
 bpmSlider.oninput = function() {
     // display BPM to user
     bpmDisplay.innerHTML = this.value;
-    console.log('somethig');
     // calculate new interval time between each 1/16th beat
-    interval = (1/(bpmSlider.value/60))/4*1000;
+    interval = (1/(this.value/60))/4*1000;
     if (playBool) {
         //update current interval
+        clearInterval(playInterval);
         playInterval = setInterval(playBeats,interval);
     }
 }
-// change playInterval???
-/*
-If the slider is changed...
-1. Update interval value
-2. Check if playBool
-3. Update playInterval
-*/
-
-// get audio files
-let hatsAudio = new Audio('/sounds/Hats.mp3');
-let snareAudio = new Audio('/sounds/Snare.mp3');
-let kickAudio = new Audio('/sounds/Kick.mp3');
 
 // functions to play audio files
 function playHats(volume) {

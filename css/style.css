@@ -2,6 +2,7 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Roboto', Georgia, Times, serif;
 }
 
 body {
@@ -48,5 +49,8 @@ p {
 }
 
 #playPauseBtn {
-    margin: 2em;
+    width: 175px;
+    margin: 2.5em;
+    padding: 14px 40px;
 }
+

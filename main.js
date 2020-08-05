@@ -34,10 +34,14 @@ playPauseBtn.addEventListener('click', () => {
     playBool = !playBool;
     // play beats function
     if(playBool) {
+        // update text content of playPause Button
+        playPauseBtn.textContent = "Pause";
         // calculate the interval between beats using value on bpm slider input
         interval = (1/(bpmSlider.value/60))/4*1000;
         playInterval = setInterval(playBeats,interval); // 1/16th beats at 140bpm
     } else {
+        // update text content of playPause Button
+        playPauseBtn.textContent = "Play";
         clearInterval(playInterval);
     }
 });

@@ -82,9 +82,8 @@ function playKick(volume) {
 // generate grid to be used for making rythms
 function createRythmDivs(numBeats) {
     let totalBoxes = (numBeats+1) * 4; // 4 rows of n boxes
-    let boxWidth = (contWidth / (numBeats+1) ) + 'px';
-    let boxHeight = (contHeight / 4 ) + 'px';
-    cont.setAttribute('style', `display: grid; grid-template-columns: repeat(${numBeats+1}, ${boxWidth}); grid-template-rows: repeat(${4}, ${boxHeight})`);
+
+    cont.setAttribute('style', `display: grid; grid-template-columns: 10% repeat(${numBeats}, 5.625%); grid-template-rows: repeat(${4}, 25%`);
     
     let boxId = 0;
     for (let i = 0; i < totalBoxes; i++) {

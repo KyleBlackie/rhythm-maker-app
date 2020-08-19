@@ -11,9 +11,9 @@ let contWidth = cont.clientWidth;
 let div;
 
 // get audio files
-let hatsAudio = new Audio('/sounds/Hats.mp3');
-let snareAudio = new Audio('/sounds/Snare.mp3');
-let kickAudio = new Audio('/sounds/Kick.mp3');
+let hatsAudio = new Audio('/rythm-maker-app/sounds/Hats.mp3');
+let snareAudio = new Audio('/rythm-maker-app/sounds/Snare.mp3');
+let kickAudio = new Audio('/rythm-maker-app/sounds/Kick.mp3');
 
 let playBool = false;
 

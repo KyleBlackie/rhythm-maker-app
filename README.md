@@ -6,6 +6,7 @@ What I learned:
 - How to play audio files with JavaScript
 - Refreshed my knowledge of JavaScript syntax
 - Refreshed my knowledge of CSS concepts like grid and flexbox
+
 Demo this project at: https://kyleblackie.github.io/rhythm-maker-app/
 
 ![Imgur](https://i.imgur.com/kHxnGD4.jpg)
